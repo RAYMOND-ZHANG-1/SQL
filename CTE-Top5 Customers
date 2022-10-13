@@ -1,5 +1,7 @@
-/*Top 5 Customers with most payment based on Top 10 Cities in Top10 Countries.*/				
-WITH customer_detail(customer_id,first_name,last_name,city_id,city,country)AS(		SELECT a.customer_id,		
+/*Top 5 Customers with most payment based on Top 10 Cities in Top10 Countries.*/
+
+WITH customer_detail(customer_id,first_name,last_name,city_id,city,country)AS(		
+SELECT a.customer_id,		
        a.first_name,				
        a.last_name,				
        c.city_id,				
@@ -36,9 +38,9 @@ SELECT c.customer_id,
        c.country,				
        SUM(amount)AS total_pay				
   FROM customer_detail AS c				
-INNER JOIN payment AS p				
-   ON c.customer_id=p.customer_id				
-WHERE c.city IN(SELECT city FROM top10_cities)				
+ INNER JOIN payment AS p				
+    ON c.customer_id=p.customer_id				
+ WHERE c.city IN(SELECT city FROM top10_cities)				
    AND c.country IN (SELECT country FROM top10_countries)				
  GROUP BY 				
        c.customer_id,				
