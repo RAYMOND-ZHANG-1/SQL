@@ -11,3 +11,9 @@ countries.
 Comedy film inventory should increase as it
 was top 5 revenue gained but last top 5
 inventory number.
+Customers normally return the film back in 5
+days which is close to our longest rental
+duration 7days. That’s a good signal to us.
+Perhaps, we would be able to increase the
+rental days around 10 days.
+
