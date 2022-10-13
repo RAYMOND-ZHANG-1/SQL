@@ -14,11 +14,11 @@ SELECT first_name,
        last_name
   FROM customer
  WHERE customer_id IN (SELECT customer_id
-					     FROM payment
-					    GROUP BY customer_id
-					   HAVING SUM(amount)=(SELECT SUM(amount)
-									         FROM payment
-										    GROUP BY customer_id
-									        ORDER BY SUM(amount) DESC
-									        LIMIT 1))
+			FROM payment
+		       GROUP BY customer_id
+		      HAVING SUM(amount)=(SELECT SUM(amount)
+				            FROM payment
+					   GROUP BY customer_id
+				           ORDER BY SUM(amount) DESC
+					   LIMIT 1))
 									  
