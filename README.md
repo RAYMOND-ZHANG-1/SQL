@@ -5,3 +5,9 @@ Rockbuster Stealth LLC is a movie rental company that used to have stores around
 # Data
 The dataset comes from an postgreSQL opensource for practicing purpose only.
 # Result
+## Asia region plays an important role in our
+customer list. They hold 5 positions in top 10
+countries.
+## Comedy film inventory should increase as it
+was top 5 revenue gained but last top 5
+inventory number.
