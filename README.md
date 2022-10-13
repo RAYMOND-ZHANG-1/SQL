@@ -16,6 +16,3 @@ days which is close to our longest rental
 duration 7days. That’s a good signal to us.
 Perhaps, we would be able to increase the
 rental days around 10 days.
-
-Tableau-Show:
-https://public.tableau.com/app/profile/raymond.zhang7975/viz/Prepareforinflunzaseason/Dashboard1?publish=yes
