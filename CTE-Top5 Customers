@@ -1,0 +1,50 @@
+/*Top 5 Customers with most payment based on Top 10 Cities in Top10 Countries.*/				
+WITH customer_detail(customer_id,first_name,last_name,city_id,city,country)AS(		SELECT a.customer_id,		
+       a.first_name,				
+       a.last_name,				
+       c.city_id,				
+       c.city,				
+       d.country				
+  FROM customer AS a				
+ INNER JOIN address AS b				
+    ON a.address_id=b.address_id				
+ INNER JOIN city AS c				
+    ON b.city_id=c.city_id				
+ INNER JOIN country AS d				
+    ON c.country_id=d.country_id),				
+top10_countries(country)AS(				
+SELECT country,				
+       count(*) AS customer_number				
+  FROM customer_detail				
+ GROUP BY country				
+ ORDER BY customer_number DESC				
+ LIMIT 10),				
+top10_cities(city)AS(				
+SELECT city,				
+       COUNT(1)AS customer_number				
+  FROM customer_detail				
+ WHERE country IN (SELECT country FROM top10_countries)				
+ GROUP BY city				
+ ORDER BY customer_number DESC				
+ LIMIT 10				
+)				
+--Top 5 Customers				
+SELECT c.customer_id,				
+       c.first_name,				
+       c.last_name,				
+       c.city,				
+       c.country,				
+       SUM(amount)AS total_pay				
+  FROM customer_detail AS c				
+INNER JOIN payment AS p				
+   ON c.customer_id=p.customer_id				
+WHERE c.city IN(SELECT city FROM top10_cities)				
+   AND c.country IN (SELECT country FROM top10_countries)				
+ GROUP BY 				
+       c.customer_id,				
+       c.first_name,				
+       c.last_name,				
+       c.city,				
+       c.country				
+ ORDER BY total_pay DESC				
+ LIMIT 5				
