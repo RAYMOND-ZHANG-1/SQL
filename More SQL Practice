@@ -1,0 +1,24 @@
+# Self-Join
+-- Checking if there are actors have the same full name
+SELECT DISTINCT
+       a.first_name,
+       a.last_name
+  FROM actor AS a
+ INNER JOIN actor AS b
+    ON a.actor_id<>b.actor_id
+   AND a.first_name=b.first_name
+   AND a.last_name=b.last_name
+# Subquery 
+-- To find out the customer who made the highest payment.
+SELECT first_name,
+       last_name
+  FROM customer
+ WHERE customer_id IN (SELECT customer_id
+					               FROM payment
+					              GROUP BY customer_id
+					             HAVING SUM(amount)=(SELECT SUM(amount)
+									                           FROM payment
+										                        GROUP BY customer_id
+									                          ORDER BY SUM(amount) DESC
+									                          LIMIT 1))
+									  
