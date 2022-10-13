@@ -1,4 +1,4 @@
-# Self-Join
+#1. Self-Join
 -- Checking if there are actors have the same full name
 SELECT DISTINCT
        a.first_name,
@@ -8,7 +8,8 @@ SELECT DISTINCT
     ON a.actor_id<>b.actor_id
    AND a.first_name=b.first_name
    AND a.last_name=b.last_name
-# Subquery 
+   
+#2. Subquery 
 -- To find out the customer who made the highest payment.
 SELECT first_name,
        last_name
